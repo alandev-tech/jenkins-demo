@@ -9,28 +9,22 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Building project...'
+                sh 'docker build -t jenkins-demo:v1 .'
             }
         }
 
-        stage('Test') {
+        stage('List Docker Images') {
             steps {
-                echo 'Running tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying project...'
+                sh 'docker images'
             }
         }
     }
 
     post {
         success {
-            echo 'CI/CD Pipeline Completed Successfully!'
+            echo 'Docker Image Build Completed Successfully!'
         }
     }
 }
