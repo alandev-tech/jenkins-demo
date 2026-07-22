@@ -20,7 +20,7 @@ pipeline {
                 sh 'docker images'
             }
         }
-    }
+        
         stage('Run Docker Container') {
         steps {
             sh 'docker run --rm jenkins-demo:v1'
