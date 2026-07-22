@@ -28,3 +28,8 @@ pipeline {
         }
     }
 }
+    stage('Run Docker Container') {
+        steps {
+            sh 'docker run --rm jenkins-demo:v1'
+    }
+}
