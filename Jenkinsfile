@@ -21,15 +21,15 @@ pipeline {
             }
         }
     }
+        stage('Run Docker Container') {
+        steps {
+            sh 'docker run --rm jenkins-demo:v1'
+    }
+}
 
     post {
         success {
             echo 'Docker Image Build Completed Successfully!'
         }
-    }
-}
-    stage('Run Docker Container') {
-        steps {
-            sh 'docker run --rm jenkins-demo:v1'
     }
 }
