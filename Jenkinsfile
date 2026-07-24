@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    environment {
+        IMAGE_NAME = "jenkins-demo"
+    }
+    parameters {
+    string(
+        name: 'IMAGE_TAG',
+        defaultValue: 'v1',
+        description: 'Enter Docker Image Tag'
+    )
+}
 
     stages {
 
@@ -23,7 +33,7 @@ pipeline {
         
         stage('Run Docker Container') {
         steps {
-            sh 'docker run --rm jenkins-demo:v1'
+           sh "docker build -t ${IMAGE_NAME}:${params.IMAGE_TAG} ."
          }
      }
 }
