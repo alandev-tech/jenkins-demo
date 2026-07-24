@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t jenkins-demo:v1 .'
+               sh "docker build -t ${IMAGE_NAME}:${params.IMAGE_TAG} ."
             }
         }
 
@@ -33,7 +33,7 @@ pipeline {
         
         stage('Run Docker Container') {
         steps {
-           sh "docker build -t ${IMAGE_NAME}:${params.IMAGE_TAG} ."
+           sh "docker run --rm ${IMAGE_NAME}:${params.IMAGE_TAG}"
          }
      }
 }
